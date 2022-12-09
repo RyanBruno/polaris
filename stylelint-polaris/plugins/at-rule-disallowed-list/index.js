@@ -8,8 +8,10 @@ const messages = stylelint.utils.ruleMessages(ruleName, {
   /**
    * @type {stylelint.RuleMessageFunc}
    */
-  rejected: (atRuleName, atRuleId) => {
-    return `Unexpected @${atRuleName} rule${atRuleId ? ` "${atRuleId}"` : ''}`;
+  rejected: (atRuleName, atRuleParams, disallowedPattern) => {
+    return `Unexpected @${atRuleName} rule${
+      atRuleParams ? ` [${atRuleParams}].` : ''
+    } matching disallowed pattern [${disallowedPattern}]`;
   },
 });
 
@@ -49,12 +51,18 @@ const {rule} = stylelint.createPlugin(
 
         if (!found || !found.length) return;
 
-        found.forEach(() => {
+        found.forEach((disallowedPattern) => {
           stylelint.utils.report({
             ruleName,
             result,
             node: atRule,
-            message: messages.rejected(atRuleName, atRuleId),
+            message: messages.rejected(
+              atRuleName,
+              atRuleId,
+              isString(disallowedPattern)
+                ? disallowedPattern
+                : disallowedPattern.source,
+            ),
           });
         });
       });
