@@ -8,10 +8,10 @@ const messages = stylelint.utils.ruleMessages(ruleName, {
   /**
    * @type {stylelint.RuleMessageFunc}
    */
-  rejected: (atRuleName, atRuleParams, disallowedPattern) => {
+  rejected: (atRuleName, atRuleParams) => {
     return `Unexpected @${atRuleName} rule${
-      atRuleParams ? ` [${atRuleParams}].` : ''
-    } matching disallowed pattern [${disallowedPattern}]`;
+      atRuleParams ? ` "${atRuleParams}"` : ''
+    }`;
   },
 });
 
