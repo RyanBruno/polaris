@@ -17,6 +17,21 @@ npx @shopify/polaris-migrator <migration> <path>
 
 ## Migrations
 
+### v11
+
+#### `react-breadcrumbs-migrate-from-array`
+
+Replace legacy Page component breadcrumbs props that used to take arrays with a single object.
+
+```diff
+- <Page breadcrumbs={[{url: '/testing', content: 'Breadcrumb'}]}>
++ <Page breadcrumbs={{url: '/testing', content: 'Breadcrumb'}}>
+```
+
+```sh
+npx @shopify/polaris-migrator react-breadcrumbs-migrate-from-array <path>
+```
+
 ### v10
 
 #### `styles-insert-stylelint-disable` (unstable)
