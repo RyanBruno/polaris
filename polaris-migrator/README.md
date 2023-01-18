@@ -21,7 +21,7 @@ npx @shopify/polaris-migrator <migration> <path>
 
 #### `react-breadcrumbs-migrate-from-array`
 
-Replace legacy Page component breadcrumbs props that used to take arrays with a single object.
+Update the Page component `breadcrumbs` prop to use a single object instead of an array of objects as the input.
 
 ```diff
 - <Page breadcrumbs={[{url: '/testing', content: 'Breadcrumb'}]}>
