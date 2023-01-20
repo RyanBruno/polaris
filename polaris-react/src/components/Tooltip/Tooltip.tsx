@@ -102,6 +102,7 @@ export function Tooltip({
   const id = useUniqueId('TooltipContent');
   const activatorContainer = useRef<HTMLElement>(null);
   const mouseEntered = useRef(false);
+  const [shouldAnimate, setShouldAnimate] = useState(true);
   const hoverDelayTimeout = useRef<NodeJS.Timeout | null>(null);
   const hoverOutTimeout = useRef<NodeJS.Timeout | null>(null);
 
@@ -130,12 +131,14 @@ export function Tooltip({
   }, []);
 
   const handleOpen = useCallback(() => {
+    setShouldAnimate(presenceList.tooltip === 0);
     onOpen?.();
     addPresence('tooltip');
-  }, [addPresence]);
+  }, [addPresence, presenceList.tooltip]);
 
   const handleClose = useCallback(() => {
     onClose?.();
+    setShouldAnimate(false);
     hoverOutTimeout.current = setTimeout(() => {
       removePresence('tooltip');
     }, HOVER_OUT_TIMEOUT);
@@ -206,7 +209,7 @@ export function Tooltip({
         padding={padding}
         borderRadius={borderRadius}
         zIndexOverride={zIndexOverride}
-        instant={isATooltipCurrentlyVisible}
+        instant={!shouldAnimate}
         mode={mode}
       >
         {content}
