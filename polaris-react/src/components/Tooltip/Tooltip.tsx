@@ -11,7 +11,7 @@ import {useUniqueId} from '../../utilities/unique-id';
 import {useToggle} from '../../utilities/use-toggle';
 import {classNames} from '../../utilities/css';
 
-import {TooltipOverlay, TooltipOverlayProps, IconTooltip} from './components';
+import {TooltipOverlay, TooltipOverlayProps} from './components';
 import styles from './Tooltip.scss';
 
 export type Width = 'default' | 'wide';
@@ -66,9 +66,11 @@ export interface TooltipProps {
   onOpen?(): void;
   /* Callback fired when the tooltip is dismissed */
   onClose?(): void;
+  /** Used for Tooltips displaying information regarding a keyboard shortcut */
+  keyboardShortcut?: string;
 }
 
-const HOVER_OUT_TIMEOUT = 300;
+const HOVER_OUT_TIMEOUT = 150;
 
 export function Tooltip({
   mode,
@@ -152,40 +154,43 @@ export function Tooltip({
     activatorWrapper === 'div' && styles.TooltipContainer,
   );
 
-  if (mode === 'icon') {
-    return (
-      <IconTooltip
-        activatorWrapper={activatorWrapper}
-        id={id}
-        preferredPosition={preferredPosition}
-        activator={activatorNode}
-        active={active}
-        accessibilityLabel={accessibilityLabel}
-        onClose={noop}
-        preventInteraction={dismissOnMouseOut}
-        width={width}
-        padding={padding}
-        borderRadius={borderRadius}
-        content={content}
-        onFocus={() => {
-          handleOpen?.();
-          handleFocus();
-        }}
-        onBlur={() => {
-          handleClose?.();
-          handleBlur();
-        }}
-        onMouseLeave={handleMouseLeave}
-        onMouseOver={handleMouseEnterFix}
-        ref={setActivator}
-        onKeyUp={handleKeyUp}
-        className={wrapperClassNames}
-        isOtherPresent={presenceList.tooltip}
-      >
-        {children}
-      </IconTooltip>
-    );
-  }
+  const isATooltipCurrentlyVisible = presenceList.tooltip > 1;
+
+  // if (mode === 'icon') {
+  //   return (
+  //     <IconTooltip
+  //       activatorWrapper={activatorWrapper}
+  //       id={id}
+  //       preferredPosition={preferredPosition}
+  //       activator={activatorNode}
+  //       active={active}
+  //       accessibilityLabel={accessibilityLabel}
+  //       onClose={noop}
+  //       preventInteraction={dismissOnMouseOut}
+  //       width={width}
+  //       padding={padding}
+  //       borderRadius={borderRadius}
+  //       zIndexOverride={zIndexOverride}
+  //       content={content}
+  //       onFocus={() => {
+  //         handleOpen?.();
+  //         handleFocus();
+  //       }}
+  //       onBlur={() => {
+  //         handleClose?.();
+  //         handleBlur();
+  //       }}
+  //       onMouseLeave={handleMouseLeave}
+  //       onMouseOver={handleMouseEnterFix}
+  //       ref={setActivator}
+  //       onKeyUp={handleKeyUp}
+  //       className={wrapperClassNames}
+  //       instant={isATooltipCurrentlyVisible}
+  //     >
+  //       {children}
+  //     </IconTooltip>
+  //   );
+  // }
 
   const portal = activatorNode ? (
     <Portal idPrefix="tooltip">
@@ -201,6 +206,8 @@ export function Tooltip({
         padding={padding}
         borderRadius={borderRadius}
         zIndexOverride={zIndexOverride}
+        instant={isATooltipCurrentlyVisible}
+        mode={mode}
       >
         {content}
       </TooltipOverlay>
@@ -244,7 +251,7 @@ export function Tooltip({
 
   function handleMouseEnter() {
     mouseEntered.current = true;
-    if (hoverDelay) {
+    if (hoverDelay && !isATooltipCurrentlyVisible) {
       hoverDelayTimeout.current = setTimeout(() => {
         handleOpen?.();
         handleFocus();
