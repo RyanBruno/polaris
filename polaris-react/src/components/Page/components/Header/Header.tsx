@@ -47,8 +47,10 @@ export interface HeaderProps extends TitleProps {
   primaryAction?: PrimaryAction | React.ReactNode;
   /** Page-level pagination */
   pagination?: PaginationProps;
-  /** Collection of breadcrumbs */
+  /** @deprecated Collection of breadcrumbs */
   breadcrumbs?: BreadcrumbsProps['breadcrumbs'];
+  /** A breadcrumb link */
+  breadcrumb?: BreadcrumbsProps['breadcrumb'];
   /** Collection of secondary page-level actions */
   secondaryActions?: MenuActionDescriptor[] | React.ReactNode;
   /** Collection of page-level groups of secondary actions */
@@ -75,6 +77,7 @@ export function Header({
   pagination,
   additionalNavigation,
   breadcrumbs,
+  breadcrumb,
   secondaryActions = [],
   actionGroups = [],
   compactTitle = false,
@@ -88,6 +91,10 @@ export function Header({
     console.warn(
       'Deprecation: The `additionalNavigation` on Page is deprecated and will be removed in the next major version.',
     );
+    // eslint-disable-next-line no-console
+    console.warn(
+      'Deprecation: The `breadcrumbs` prop on Page is deprecated and will be removed in the next major version. Please replace with the singular `breadcrumb`.',
+    );
   }
 
   const isSingleRow =
@@ -97,13 +104,28 @@ export function Header({
       isReactElement(secondaryActions)) &&
     !actionGroups.length;
 
-  const breadcrumbMarkup =
-    (Array.isArray(breadcrumbs) && breadcrumbs.length > 0) ||
-    (!Array.isArray(breadcrumbs) && breadcrumbs) ? (
-      <div className={styles.BreadcrumbWrapper}>
-        <Breadcrumbs breadcrumbs={breadcrumbs} />
-      </div>
-    ) : null;
+  const breadcrumbMarkup = () => {
+    if (breadcrumb) {
+      return (
+        <div className={styles.BreadcrumbWrapper}>
+          <Breadcrumbs breadcrumb={breadcrumb} />
+        </div>
+      );
+    }
+
+    if (
+      (Array.isArray(breadcrumbs) && breadcrumbs.length > 0) ||
+      (!Array.isArray(breadcrumbs) && breadcrumbs)
+    ) {
+      return (
+        <div className={styles.BreadcrumbWrapper}>
+          <Breadcrumbs breadcrumbs={breadcrumbs} />
+        </div>
+      );
+    }
+
+    return null;
+  };
 
   const paginationMarkup =
     pagination && !isNavigationCollapsed ? (
@@ -119,9 +141,9 @@ export function Header({
   ) : null;
 
   const navigationMarkup =
-    breadcrumbMarkup || paginationMarkup || additionalNavigationMarkup ? (
+    breadcrumbMarkup() || paginationMarkup || additionalNavigationMarkup ? (
       <div className={styles.Navigation}>
-        {breadcrumbMarkup}
+        {breadcrumbMarkup()}
         {additionalNavigationMarkup}
         {paginationMarkup}
       </div>
@@ -200,7 +222,7 @@ export function Header({
     <div className={headerClassNames}>
       <ConditionalRender condition={[slot1, slot2, slot3, slot4].some(notNull)}>
         <div className={styles.Row}>
-          {slot1}
+          {slot1 && slot1()}
           {slot2}
           <ConditionalRender condition={[slot3, slot4].some(notNull)}>
             <div className={styles.RightAlign}>
@@ -299,7 +321,7 @@ function determineLayout({
   actionMenuMarkup: MaybeJSX;
   additionalMetadataMarkup: MaybeJSX;
   additionalNavigationMarkup: MaybeJSX;
-  breadcrumbMarkup: MaybeJSX;
+  breadcrumbMarkup: () => MaybeJSX;
   isNavigationCollapsed: boolean;
   pageTitleMarkup: JSX.Element;
   paginationMarkup: MaybeJSX;
