@@ -66,6 +66,14 @@ export const motion = {
   'keyframes-spin': {
     value: '{ to { transform: rotate(1turn) } }',
   },
+  'keyframes-appear-above': {
+    value:
+      'from { transform: translateY(calc(var(--p-space-1) * -1)); opacity: 0; } to { transform: none; opacity: 1; }',
+  },
+  'keyframes-appear-below': {
+    value:
+      'from { transform: translateY(var(--p-space-1)); opacity: 0; } to { transform: none; opacity: 1; }',
+  },
 };
 
 export type MotionTokenGroup = TokenGroup<typeof motion>;
@@ -92,5 +100,7 @@ export const motionKeyframesAlias = [
   'fade-in',
   'pulse',
   'spin',
+  'appear-above',
+  'appear-below',
 ] as const;
 export type MotionKeyframesAlias = typeof motionKeyframesAlias[number];
