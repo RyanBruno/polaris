@@ -24,6 +24,7 @@ const genNavJson = (mardownFiles) => {
       url,
       status,
     } = md.frontMatter;
+
     const {slug} = md;
 
     const path = `children.${slug.replace(/\//g, '.children.')}`;
@@ -73,6 +74,7 @@ const genCacheJson = () => {
 
   const mardownFiles = mdFiles
     .map((filePath) => getMdContent(filePath))
+    .filter((md) => !md.frontMatter?.hideFromNav)
     .sort((a, b) => a.slug.localeCompare(b.slug));
 
   genSiteJson(mardownFiles);

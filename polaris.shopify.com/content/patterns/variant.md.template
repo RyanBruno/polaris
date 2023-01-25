@@ -1,0 +1,40 @@
+---
+title: {title}
+slug: {slug}
+hideFromNav: true
+---
+
+{description}
+
+<div as="HowItHelps">
+
+## How it helps merchants
+
+{howItHelps.image}
+
+<div as="DefinitionTable">
+
+### Use when merchants need to:
+
+{howItHelps.dl}
+
+</div>
+</div>
+<div as="Usage">
+
+## Using this pattern
+
+This pattern uses the {components}
+
+```javascript {"previewContext":"____CODE____", "sandboxContext":"____CODE____"}
+{code}
+```
+
+</div>
+<div as="UsefulToKnow">
+
+### Useful to know
+
+{usefulToKnow}
+
+</div>

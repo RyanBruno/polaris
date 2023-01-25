@@ -52,13 +52,23 @@ export interface FrontMatter {
     value: string;
     message: string;
   };
+  hideFromNav?: boolean;
 }
 
-export interface PatternFrontMatter extends FrontMatter {
+export interface PatternFrontMatter extends Omit<FrontMatter, 'description'> {
+  /* Description is shown on Patterns index page, and as the meta description on detail page */
+  description: string;
+  /* Lede is the first paragraph on the detail page, above variants */
+  lede: string;
   previewImg?: string;
   order?: number;
   githubDiscussionsLink?: string;
-  contentFile: string;
+  variants?: string[];
+}
+
+export interface PatternVariantFontMatter {
+  title?: string;
+  slug?: string;
 }
 
 export type MarkdownFile = {
