@@ -208,10 +208,6 @@
     "Tag": {
       "ariaLabel": "Odebrat: {children}"
     },
-    "TextField": {
-      "characterCount": "Počet znaků: {count}",
-      "characterCountWithMaxLength": "Použité znaky: {characterCount} z {limit}"
-    },
     "TopBar": {
       "toggleMenuLabel": "Přepnout nabídku",
       "SearchField": {
@@ -309,6 +305,20 @@
     "FullscreenBar": {
       "back": "Zpět",
       "accessibilityLabel": "Ukončit režim celé obrazovky"
+    },
+    "TextField": {
+      "characterCount": {
+        "one": "Počet znaků: {count}",
+        "other": "Počet znaků: {count}",
+        "few": "Počet znaků: {count}",
+        "many": "Počet znaků: {count}"
+      },
+      "characterCountWithMaxLength": {
+        "one": "Použité znaky: {characterCount} z {limit}",
+        "other": "Použité znaky: {characterCount} z {limit}",
+        "few": "Použité znaky: {characterCount} z {limit}",
+        "many": "Použité znaky: {characterCount} z {limit}"
+      }
     }
   }
 }

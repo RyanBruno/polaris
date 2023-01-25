@@ -208,10 +208,6 @@
     "Tag": {
       "ariaLabel": "Ta bort {children}"
     },
-    "TextField": {
-      "characterCount": "{count} tecken",
-      "characterCountWithMaxLength": "{characterCount} av {limit} tecken har använts"
-    },
     "TopBar": {
       "toggleMenuLabel": "Växla menyn",
       "SearchField": {
@@ -307,6 +303,16 @@
     "FullscreenBar": {
       "back": "Tillbaka",
       "accessibilityLabel": "Lämna helskärmsläget"
+    },
+    "TextField": {
+      "characterCount": {
+        "one": "{count} tecken",
+        "other": "{count} tecken"
+      },
+      "characterCountWithMaxLength": {
+        "one": "{characterCount} av {limit} tecken har använts",
+        "other": "{characterCount} av {limit} tecken har använts"
+      }
     }
   }
 }

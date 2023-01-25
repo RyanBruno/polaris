@@ -208,10 +208,6 @@
     "Tag": {
       "ariaLabel": "删除 {children}"
     },
-    "TextField": {
-      "characterCount": "{count} 个字符",
-      "characterCountWithMaxLength": "已使用 {characterCount}/{limit} 个字符"
-    },
     "TopBar": {
       "toggleMenuLabel": "切换菜单",
       "SearchField": {
@@ -307,6 +303,16 @@
     "FullscreenBar": {
       "back": "上一步",
       "accessibilityLabel": "退出全屏模式"
+    },
+    "TextField": {
+      "characterCount": {
+        "one": "{count} 个字符",
+        "other": "{count} 个字符"
+      },
+      "characterCountWithMaxLength": {
+        "one": "已使用 {characterCount} 个字符，最多 {limit} 个字符",
+        "other": "已使用 {characterCount} 个字符，最多 {limit} 个字符"
+      }
     }
   }
 }

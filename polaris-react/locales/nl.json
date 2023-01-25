@@ -208,10 +208,6 @@
     "Tag": {
       "ariaLabel": "{children} verwijderen"
     },
-    "TextField": {
-      "characterCount": "{count} tekens",
-      "characterCountWithMaxLength": "{characterCount} van {limit} tekens gebruikt"
-    },
     "TopBar": {
       "toggleMenuLabel": "Schakelen tussen menu's",
       "SearchField": {
@@ -307,6 +303,16 @@
     "FullscreenBar": {
       "back": "Terug",
       "accessibilityLabel": "Volledig scherm-modus afsluiten"
+    },
+    "TextField": {
+      "characterCount": {
+        "one": "{count} teken",
+        "other": "{count} tekens"
+      },
+      "characterCountWithMaxLength": {
+        "one": "{characterCount} van {limit} teken gebruikt",
+        "other": "{characterCount} van {limit} tekens gebruikt"
+      }
     }
   }
 }

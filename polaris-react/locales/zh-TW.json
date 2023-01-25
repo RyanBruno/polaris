@@ -208,10 +208,6 @@
     "Tag": {
       "ariaLabel": "移除 {children}"
     },
-    "TextField": {
-      "characterCount": "{count} 個字元",
-      "characterCountWithMaxLength": "已使用 {characterCount} 個字元，上限為 {limit} 個字元"
-    },
     "TopBar": {
       "toggleMenuLabel": "切換選單",
       "SearchField": {
@@ -307,6 +303,16 @@
     "FullscreenBar": {
       "back": "返回",
       "accessibilityLabel": "退出全螢幕模式"
+    },
+    "TextField": {
+      "characterCount": {
+        "one": "{count} 個字元",
+        "other": "{count} 個字元"
+      },
+      "characterCountWithMaxLength": {
+        "one": "已使用 {characterCount} 個字元，上限為 {limit} 個字元",
+        "other": "已使用 {characterCount} 個字元，上限為 {limit} 個字元"
+      }
     }
   }
 }

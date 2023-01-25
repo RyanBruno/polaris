@@ -208,10 +208,6 @@
     "Tag": {
       "ariaLabel": "ลบ {children} ออก"
     },
-    "TextField": {
-      "characterCount": "{count} อักขระ",
-      "characterCountWithMaxLength": "ใช้อักขระไปแล้ว {characterCount} จาก {limit}"
-    },
     "TopBar": {
       "toggleMenuLabel": "เมนูเปิด/ปิด",
       "SearchField": {
@@ -307,6 +303,16 @@
     "FullscreenBar": {
       "back": "ย้อนกลับ",
       "accessibilityLabel": "ออกจากโหมดเต็มหน้าจอ"
+    },
+    "TextField": {
+      "characterCount": {
+        "one": "{count} อักขระ",
+        "other": "{count} อักขระ"
+      },
+      "characterCountWithMaxLength": {
+        "one": "ใช้อักขระไปแล้ว {characterCount} จาก {limit}",
+        "other": "ใช้อักขระไปแล้ว {characterCount} จาก {limit}"
+      }
     }
   }
 }

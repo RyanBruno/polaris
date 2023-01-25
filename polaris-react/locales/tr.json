@@ -208,10 +208,6 @@
     "Tag": {
       "ariaLabel": "Şunu kaldır: {children}"
     },
-    "TextField": {
-      "characterCount": "{count} karakter",
-      "characterCountWithMaxLength": "{characterCount}/{limit} karakter kullanıldı"
-    },
     "TopBar": {
       "toggleMenuLabel": "Menüyü aç/kapat",
       "SearchField": {
@@ -307,6 +303,16 @@
     "FullscreenBar": {
       "back": "Geri",
       "accessibilityLabel": "Tam ekran modundan çık"
+    },
+    "TextField": {
+      "characterCount": {
+        "one": "{count} karakter",
+        "other": "{count} karakter"
+      },
+      "characterCountWithMaxLength": {
+        "one": "{characterCount}/{limit} karakter kullanıldı",
+        "other": "{characterCount}/{limit} karakter kullanıldı"
+      }
     }
   }
 }

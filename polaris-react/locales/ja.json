@@ -208,10 +208,6 @@
     "Tag": {
       "ariaLabel": "{children}を削除"
     },
-    "TextField": {
-      "characterCount": "{count}文字",
-      "characterCountWithMaxLength": "{limit}中{characterCount}の文字を使用"
-    },
     "TopBar": {
       "toggleMenuLabel": "メニューを切り替える",
       "SearchField": {
@@ -307,6 +303,16 @@
     "FullscreenBar": {
       "back": "戻る",
       "accessibilityLabel": "フルスクリーンモードを閉じる"
+    },
+    "TextField": {
+      "characterCount": {
+        "one": "{count}文字",
+        "other": "{count}文字"
+      },
+      "characterCountWithMaxLength": {
+        "one": "{characterCount}中{limit}の文字を使用",
+        "other": "{limit}中{characterCount}の文字を使用"
+      }
     }
   }
 }

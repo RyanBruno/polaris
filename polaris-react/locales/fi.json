@@ -208,10 +208,6 @@
     "Tag": {
       "ariaLabel": "Poista {children}"
     },
-    "TextField": {
-      "characterCount": "{count} merkkiä",
-      "characterCountWithMaxLength": "{characterCount}/{limit} merkkiä käytetty"
-    },
     "TopBar": {
       "toggleMenuLabel": "Valikon vaihto",
       "SearchField": {
@@ -307,6 +303,16 @@
     "FullscreenBar": {
       "back": "Takaisin",
       "accessibilityLabel": "Poistu koko näytön tilasta"
+    },
+    "TextField": {
+      "characterCount": {
+        "one": "{count} merkki",
+        "other": "{count} merkkiä"
+      },
+      "characterCountWithMaxLength": {
+        "one": "{characterCount}/{limit} merkki käytetty",
+        "other": "{characterCount}/{limit} merkkiä käytetty"
+      }
     }
   }
 }

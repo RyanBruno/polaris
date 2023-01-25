@@ -208,10 +208,6 @@
     "Tag": {
       "ariaLabel": "Usuń {children}"
     },
-    "TextField": {
-      "characterCount": "{count} znaki(-ów)",
-      "characterCountWithMaxLength": "Użyto {characterCount} z {limit} znaków"
-    },
     "TopBar": {
       "toggleMenuLabel": "Przełącz menu",
       "SearchField": {
@@ -309,6 +305,20 @@
     "FullscreenBar": {
       "back": "Powrót",
       "accessibilityLabel": "Zakończ tryb pełnoekranowy"
+    },
+    "TextField": {
+      "characterCount": {
+        "one": "{count} znak",
+        "other": "{count} znaki(-ów)",
+        "few": "{count} znaki(-ów)",
+        "many": "{count} znaki(-ów)"
+      },
+      "characterCountWithMaxLength": {
+        "one": "Użyto {characterCount} z {limit} znaku",
+        "other": "Użyto {characterCount} z {limit} znaków",
+        "few": "Użyto {characterCount} z {limit} znaków",
+        "many": "Użyto {characterCount} z {limit} znaków"
+      }
     }
   }
 }

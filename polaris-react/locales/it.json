@@ -208,10 +208,6 @@
     "Tag": {
       "ariaLabel": "Rimuovi {children}"
     },
-    "TextField": {
-      "characterCount": "{count} caratteri",
-      "characterCountWithMaxLength": "{characterCount} caratteri utilizzati su {limit}"
-    },
     "TopBar": {
       "toggleMenuLabel": "Apri/chiudi menu",
       "SearchField": {
@@ -308,6 +304,18 @@
     "FullscreenBar": {
       "back": "Indietro",
       "accessibilityLabel": "Esci dalla modalità schermo intero"
+    },
+    "TextField": {
+      "characterCount": {
+        "one": "{count} carattere",
+        "other": "{count} caratteri",
+        "many": "{count} caratteri"
+      },
+      "characterCountWithMaxLength": {
+        "one": "{characterCount} carattere utilizzato su {limit}",
+        "other": "{characterCount} caratteri utilizzati su {limit}",
+        "many": "{characterCount} caratteri utilizzati su {limit}"
+      }
     }
   }
 }

@@ -208,10 +208,6 @@
     "Tag": {
       "ariaLabel": "Xóa {children}"
     },
-    "TextField": {
-      "characterCount": "{count} ký tự",
-      "characterCountWithMaxLength": "Đã sử dụng {characterCount}/{limit} ký tự"
-    },
     "TopBar": {
       "toggleMenuLabel": "Bật/tắt menu",
       "SearchField": {
@@ -307,6 +303,16 @@
     "FullscreenBar": {
       "back": "Quay lại",
       "accessibilityLabel": "Thoát chế độ toàn màn hình"
+    },
+    "TextField": {
+      "characterCount": {
+        "one": "{count} ký tự",
+        "other": "{count} ký tự"
+      },
+      "characterCountWithMaxLength": {
+        "one": "Đã sử dụng {characterCount}/{limit} ký tự",
+        "other": "Đã sử dụng {characterCount}/{limit} ký tự"
+      }
     }
   }
 }

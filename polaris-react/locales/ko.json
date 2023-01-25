@@ -208,10 +208,6 @@
     "Tag": {
       "ariaLabel": "{children} 제거"
     },
-    "TextField": {
-      "characterCount": "{count}자",
-      "characterCountWithMaxLength": "{characterCount}/{limit}자 입력함"
-    },
     "TopBar": {
       "toggleMenuLabel": "토글 메뉴",
       "SearchField": {
@@ -307,6 +303,16 @@
     "FullscreenBar": {
       "back": "뒤로",
       "accessibilityLabel": "전체 화면 모드 종료"
+    },
+    "TextField": {
+      "characterCount": {
+        "one": "{count}자",
+        "other": "{count}자"
+      },
+      "characterCountWithMaxLength": {
+        "one": "{characterCount}/{limit}자 입력함",
+        "other": "{characterCount}/{limit}자 입력함"
+      }
     }
   }
 }

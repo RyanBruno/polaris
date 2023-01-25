@@ -208,10 +208,6 @@
     "Tag": {
       "ariaLabel": "Fjern {children}"
     },
-    "TextField": {
-      "characterCount": "{count} tegn",
-      "characterCountWithMaxLength": "{characterCount} av {limit} tegn brukt"
-    },
     "TopBar": {
       "toggleMenuLabel": "Aktiver/deaktiver meny",
       "SearchField": {
@@ -307,6 +303,16 @@
     "FullscreenBar": {
       "back": "Tilbake",
       "accessibilityLabel": "Avslutt fullskjermmodus"
+    },
+    "TextField": {
+      "characterCount": {
+        "one": "{count} tegn",
+        "other": "{count} tegn"
+      },
+      "characterCountWithMaxLength": {
+        "one": "{characterCount} av {limit} tegn brukt",
+        "other": "{characterCount} av {limit} tegn brukt"
+      }
     }
   }
 }
