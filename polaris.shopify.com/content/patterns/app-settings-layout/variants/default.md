@@ -26,7 +26,11 @@ hideFromNav: true
 
 This pattern uses the [`AlphaStack`](/components/alpha-stack), [`AlphaCard`](/components/alpha-card), [`Columns`](/components/columns), and [`Box`](/components/box) components.
 
-```javascript {"previewContext":"<div style={{ paddingBottom: '2rem' }}>____CODE____</div>", "sandboxContext":""}
+```javascript {"type":"previewContext","for":"example"}
+<div style={{paddingBottom: '2rem'}}>____CODE____</div>
+```
+
+```javascript {"type":"livePreview","id":"example"}
 <Page
   divider
   primaryAction={{content: 'View on your store', disabled: true}}

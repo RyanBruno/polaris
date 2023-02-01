@@ -33,7 +33,34 @@ This enables merchants to type a specific date or pick it from a calendar.
 
 This pattern uses the [`Date Picker`](/components/date-picker), and [`TextField`](/components/text-field) components.
 
-```javascript {"previewContext":"<div style={{ display: 'flex', minHeight: '100vh', alignItems: 'center', justifyContent: 'center', paddingLeft: '32px', paddingRight: '32px' }}> <div style={{ maxWidth: '300px' }}>{(function DatePickerPattern () {\n____CODE____\n})()}</div></div>", "sandboxContext":"{(function DatePickerPattern () {\n____CODE____\n})()}"}
+```javascript {"type":"previewContext","for":"example"}
+<div
+  style={{
+    display: 'flex',
+    minHeight: '100vh',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingLeft: '32px',
+    paddingRight: '32px',
+  }}
+>
+  <div style={{maxWidth: '300px'}}>
+    {(function DatePickerPattern() {
+      ____CODE____;
+    })()}
+  </div>
+</div>
+```
+
+```javascript {"type":"sandboxContext","for":"example"}
+<>
+  {(() => {
+    ____CODE____;
+  })()}
+</>
+```
+
+```javascript {"type":"livePreview","id":"example"}
 const [{month, year}, setDate] = useState({month: 1, year: 2018});
 const [selectedDates, setSelectedDates] = useState({
   start: new Date('Wed Feb 07 2018 00:00:00 GMT-0500 (EST)'),

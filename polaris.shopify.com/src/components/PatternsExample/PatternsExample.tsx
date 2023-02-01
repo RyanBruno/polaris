@@ -91,11 +91,11 @@ const PatternsExample = ({
   const formattedCode = formatCodeSnippet(example.code);
 
   const sandboxCode = example.sandboxContext
-    ? example.sandboxContext.replace('____CODE____', formattedCode)
+    ? example.sandboxContext.replace(/____CODE____;?/, formattedCode)
     : example.code;
 
   const previewCode = example.previewContext
-    ? example.previewContext.replace('____CODE____', formattedCode)
+    ? example.previewContext.replace(/____CODE____;?/, formattedCode)
     : example.code;
 
   const previewUrl = `/playroom/preview/index.html${createUrl({

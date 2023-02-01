@@ -43,8 +43,8 @@ function Markdown({
     <ReactMarkdown
       remarkPlugins={[
         [remarkGfm, {tablePipeAlign: true}],
-        codeMetaAsDataAttribute,
         ...(remarkPlugins ?? []),
+        codeMetaAsDataAttribute,
       ]}
       rehypePlugins={[rehypeRaw, ...(rehypePlugins ?? [])]}
       remarkRehypeOptions={remarkRehypeOptions}

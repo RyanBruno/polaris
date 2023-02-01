@@ -29,7 +29,7 @@ This enables merchants to select a date or a date range from a list of preset da
 
 This pattern uses the [`Date picker`](/components/date-picker), [`Option list`](/components/option-list), and [`Text field`](/components/text-field) components.
 
-```javascript {"previewContext":"____CODE____", "sandboxContext":"____CODE____"}
+```javascript {"type":"livePreview"}
 <Page divider>
   <AlphaStack gap="16">Coming Soon</AlphaStack>
 </Page>

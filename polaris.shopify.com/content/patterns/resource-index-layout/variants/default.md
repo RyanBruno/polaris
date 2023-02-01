@@ -28,7 +28,11 @@ hideFromNav: true
 
 This pattern uses the [`Layout`](/components/layout), [`Page`](/components/page), and [`Card`](/components/card) components.
 
-```javascript {"previewContext":"<div style={{ paddingBottom: '2rem' }}>____CODE____</div>", "sandboxContext":""}
+```javascript {"type":"previewContext","for":"example"}
+<div style={{paddingBottom: '2rem'}}>____CODE____</div>
+```
+
+```javascript {"type":"livePreview","id":"example"}
 <Page
   divider
   primaryAction={{content: 'View on your store', disabled: true}}

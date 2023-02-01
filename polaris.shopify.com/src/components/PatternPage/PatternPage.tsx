@@ -8,6 +8,9 @@ import {
 } from 'remark-definition-list';
 import remarkUnwrapImages from 'remark-unwrap-images';
 import {useRouter} from 'next/router';
+import {visit} from 'unist-util-visit';
+import type {Node, Parent} from 'unist-util-visit';
+import type {Plugin} from 'unified';
 
 import StatusBadge from '../StatusBadge';
 import InlinePill from '../InlinePill';
@@ -39,6 +42,70 @@ export interface Props {
 interface VariantRendererProps {
   children: (_: Props['data']['variants'][number]) => JSX.Element;
   patternData: Props['data'];
+}
+
+function codeAsContext(): Plugin {
+  return (tree) => {
+    // Gather up all the code elements
+    const codes: {
+      node: Node;
+      parent: Parent;
+      index: number;
+      meta: Record<string, any>;
+    }[] = [];
+    visit(tree, 'code', (node, index, parent) => {
+      try {
+        codes.push({node, index: index!, parent, meta: JSON.parse(node.meta)});
+      } catch (error) {
+        // Just ignore this block
+      }
+    });
+
+    // Iterate over all the code elements, matching wrappers with ids
+    codes
+      // Ignore anything which doesn't self-identify as wrapping another
+      .filter(
+        ({meta}) =>
+          ['previewContext', 'sandboxContext'].includes(meta.type) && meta.for,
+      )
+      // sort descending so when we splice these nodes out of their parents, all
+      // following indexes are still valid
+      .sort((a, b) => b.index - a.index)
+      .forEach(({node, meta, index, parent}) => {
+        if (meta.for === meta.id) {
+          console.warn(
+            `Code block specifies { for: "${meta.for}", id: "${meta.id}" }, which would cause an infinite loop.`,
+          );
+          return;
+        }
+
+        const forCode = codes.find(
+          (otherNode) => otherNode.meta.id === meta.for,
+        );
+
+        if (!forCode) {
+          console.warn(
+            `Code block specifies { for: "${meta.for}" }, but could not find matching { id: "${meta.for}" }`,
+          );
+          return;
+        }
+
+        // @ts-expect-error Yes, it does exist Typescript. Shhhhh
+        forCode.meta[meta.type] = node.value;
+
+        // Delete this code block from the tree
+        parent.children.splice(index, 1);
+      });
+
+    // For all the code blocks who might now be wrapped, re-encode the modified
+    // meta and stick it back on the node
+    codes
+      .filter(({meta}) => meta.id)
+      .forEach(({node, meta}) => {
+        // @ts-expect-error Yes, it does exist Typescript. Shhhhh
+        node.meta = JSON.stringify(meta);
+      });
+  };
 }
 
 const SingleVariant = ({
@@ -144,7 +211,7 @@ const BaseMarkdown = ({
   mdxComponents?: {[key: string]: React.ComponentType};
 }) => (
   <Markdown
-    remarkPlugins={[remarkUnwrapImages, remarkDefinitionList]}
+    remarkPlugins={[codeAsContext, remarkUnwrapImages, remarkDefinitionList]}
     // @ts-expect-error incompatible type to remark-rehype in remark-definition-list package.
     remarkRehypeOptions={{handlers: defListHastHandlers}}
     components={{
@@ -263,28 +330,32 @@ const VariantMarkdown = ({
             return <InlinePill {...props} />;
           }
 
-          let previewContext, sandboxContext;
+          let type, previewContext, sandboxContext;
 
           if (meta) {
             try {
-              ({previewContext, sandboxContext} = JSON.parse(meta));
+              ({type, previewContext, sandboxContext} = JSON.parse(meta));
             } catch (error) {
               console.warn(`code block meta is not parsable JSON: ${meta}`);
             }
           }
 
-          return (
-            <PatternsExample
-              example={{
-                code: (props.children?.[0] as string) ?? '',
-                previewContext,
-                sandboxContext,
-              }}
-              showCode={showCode}
-              onCodeToggle={() => toggleCode((showCode) => !showCode)}
-              patternName={patternName}
-            />
-          );
+          if (type === 'livePreview') {
+            return (
+              <PatternsExample
+                example={{
+                  code: (props.children?.[0] as string) ?? '',
+                  previewContext,
+                  sandboxContext,
+                }}
+                showCode={showCode}
+                onCodeToggle={() => toggleCode((showCode) => !showCode)}
+                patternName={patternName}
+              />
+            );
+          }
+
+          return <code>{(props.children?.[0] as string) ?? ''}</code>;
         },
       }}
       mdxComponents={{
