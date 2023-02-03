@@ -71,6 +71,7 @@ export const LegacyCard: React.FunctionComponent<LegacyCardProps> & {
 
   const className = classNames(
     styles.LegacyCard,
+    styles.Test,
     subdued && styles.subdued,
     hideOnPrint && styles.hideOnPrint,
   );

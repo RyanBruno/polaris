@@ -1,5 +1,9 @@
 @import '../../styles/common';
 
+.Test {
+  background-color: var(--p-surface-critical);
+}
+
 .LegacyCard {
   background-color: var(--p-surface);
   box-shadow: var(--p-shadow-card);
